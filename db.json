@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "name": "Frontend Developer",
+      "componi": "Google",
+      "prase": "2000",
+      "status": true,
+      "id": "1"
+    },
+    {
+      "name": "Beckend Developer",
+      "componi": "Amazom",
+      "prase": "2500",
+      "status": true,
+      "id": "2"
+    },
+    {
+      "name": "UI/UX Designer",
+      "componi": "Figma",
+      "prase": "1800",
+      "status": false,
+      "id": "3"
+    }
+  ],
+  "Users": [
+    {
+      "id": 1755956829437,
+      "firstName": "Sharipov",
+      "lastName": "Sobir",
+      "password": "2004-10-24"
+    }
+  ]
+}

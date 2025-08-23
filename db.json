@@ -20,11 +20,24 @@
       "prase": "1800",
       "status": false,
       "id": "3"
+    },
+    {
+      "id": "714f",
+      "name": "Sobir Sharipov",
+      "age": "12344",
+      "city": "Vahdat",
+      "number": "",
+      "university": "D.D.T.T.M Osimi",
+      "specialty": "IT-Razrabochik",
+      "graduationYear": "4-kurs",
+      "skills": "Frontend",
+      "goals": "",
+      "image": "blob:http://localhost:3001/a3acfb3f-1d3b-4c5d-b57c-1c1039af724f"
     }
   ],
   "Users": [
     {
-      "id": 1755956829437,
+      "id": "1755956829437",
       "firstName": "Sharipov",
       "lastName": "Sobir",
       "password": "2004-10-24"

@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Image from 'next/image'
 // let api="http://localhost:3000/data"
 const Home = () => {
   let { data } = useGetUserQuery()
@@ -58,6 +59,7 @@ const Home = () => {
                   <p className=' font-bold text-[20px] text-gray-400'>{el.componi}</p>
                   <p className='font-bold text-2xl text-green-500'>{el.prase}$</p>
                   <p>{el.status ? "Active" : "Inactive"}</p>
+                  <Image src={el.image} alt="test" width={200} height={200} />
                   <button className='w-[100%] p-[10px] bg-blue-600 text-white font-bold rounded mt-[20px]'>Save</button>
                 </div>
                 </div>

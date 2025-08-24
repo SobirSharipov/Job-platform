@@ -19,7 +19,7 @@ const contentStyle = {
 }
 const Swiper = () => {
     return (
-        <div className='my-[50px]'>
+        <div className='mb-[30px]'>
             <Carousel autoplay={{ dotDuration: true }} autoplaySpeed={2000}>
 
                 <div className='w-full h-[90vh] ' style={contentStyle} >

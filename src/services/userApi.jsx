@@ -30,7 +30,16 @@ export const UserApi = createApi({
                 method: "GET"
             })
         }),
+        getUserById: builder.query({
+            query: (id) => `/users/${id}`,
+        }),
+        deleteInfo: builder.mutation({
+            query: (id) => ({
+                url: `data/${id}`, // заменяем на путь к пользователю по ID
+                method: "DELETE"
+            })
+        })
     })
 })
 
-export const { useGetUserQuery, useRegistrAddMutation, useLoginUserMutation, useAddLoginQuery,useAddUserMutation } = UserApi
+export const { useDeleteInfoMutation,useGetUserByIdQuery, useGetUserQuery, useRegistrAddMutation, useLoginUserMutation, useAddLoginQuery, useAddUserMutation } = UserApi

@@ -36,6 +36,7 @@ export default function Registor() {
       const res = await Add(newUser)
       if (res) {
         localStorage.setItem("currentUser", JSON.stringify(newUser))
+        localStorage.setItem("Userid", JSON.stringify(newUser.id))
         toast.success("Registration successful!");
         reset()
         router.push("/");

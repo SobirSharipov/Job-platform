@@ -8,14 +8,16 @@ const Profile = () => {
   let [add] = useAddUserMutation()
   let router = useRouter()
 
-  const [imageFile, setImageFile] = useState(null);     // сам файл
-  const [previewUrl, setPreviewUrl] = useState(null);   // для отображения preview
+  const [imageFile, setImageFile] = useState(null);     
+  const [previewUrl, setPreviewUrl] = useState(null);   
+ const token = JSON.parse(localStorage.getItem("Userid"))
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let form = e.target;
 
     const userData = {
+      userId: token,
       name: form.Name.value,
       age: form.age.value,
       city: form.city.value,
@@ -23,7 +25,9 @@ const Profile = () => {
       university: form.university.value,
       specialty: form.specialty.value,
       graduationYear: form.graduationYear.value,
+      experience: form.experience.value,
       skills: form.skills.value,
+      Email: form.Email.value,
       goals: form.goals.value,
       image: previewUrl, 
     };
@@ -44,13 +48,16 @@ const Profile = () => {
   };
 
 
-  function handleImageChange(e) {
-    const file = e.target.files[0];
-    if (file) {
-      setImageFile(file);
-      setPreviewUrl(URL.createObjectURL(file)); 
-    }
+ function handleImageChange(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPreviewUrl(reader.result); // здесь base64
+    };
+    reader.readAsDataURL(file);
   }
+}
 
   return (
     <div className='flex justify-around items-start my-[50px]'>
@@ -69,7 +76,9 @@ const Profile = () => {
         <input type="text" name="specialty" placeholder="Специальность" className="w-full p-2 border rounded" />
         <input type="text" name="graduationYear" placeholder="Курс или Год окончания" className="w-full p-2 border rounded" />
 
+        <input type="text" name="experience" placeholder="Oпыть " className="w-full p-2 border rounded" />
         <input type="text" name="skills" placeholder="Навыки " className="w-full p-2 border rounded" />
+        <input type="text" name="Email" placeholder="Телеграм " className="w-full p-2 border rounded" />
 
         <textarea
           name="goals"

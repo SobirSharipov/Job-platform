@@ -20,7 +20,7 @@ const contentStyle = {
 const Swiper = () => {
     return (
         <div className='mb-[30px]'>
-            <Carousel autoplay={{ dotDuration: true }} autoplaySpeed={2000}>
+            <Carousel  autoplay={{ dotDuration: true }} autoplaySpeed={2000}>
 
                 <div className='w-full h-[90vh] ' style={contentStyle} >
                     <div className='flex justify-around items-center h-[90vh]'>

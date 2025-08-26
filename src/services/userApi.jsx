@@ -8,13 +8,30 @@ export const UserApi = createApi({
             query: () => "data"
         }),
         addLogin: builder.query({
-            query: () => "User"
+            query: () => "Users"
+        }),
+        getProfile: builder.query({
+            query: () => "Profile"
         }),
         AddUser: builder.mutation({
             query: (newUser) => ({
                 url: "data",
                 method: "POST",
                 body: newUser
+            })
+        }),
+        AddProfile: builder.mutation({
+            query: (newUser) => ({
+                url: "Profile",
+                method: "POST",
+                body: newUser
+            })
+        }),
+        updateUser: builder.mutation({
+            query: ({ id, ...updatedData }) => ({
+                url: `data/${id}`,
+                method: "PATCH",
+                body: updatedData
             })
         }),
         registrAdd: builder.mutation({
@@ -35,11 +52,11 @@ export const UserApi = createApi({
         }),
         deleteInfo: builder.mutation({
             query: (id) => ({
-                url: `data/${id}`, // заменяем на путь к пользователю по ID
+                url: `data/${id}`,
                 method: "DELETE"
             })
         })
     })
 })
 
-export const { useDeleteInfoMutation,useGetUserByIdQuery, useGetUserQuery, useRegistrAddMutation, useLoginUserMutation, useAddLoginQuery, useAddUserMutation } = UserApi
+export const { useUpdateUserMutation, useGetProfileQuery, useAddProfileMutation, useDeleteInfoMutation, useGetUserByIdQuery, useGetUserQuery, useRegistrAddMutation, useLoginUserMutation, useAddLoginQuery, useAddUserMutation } = UserApi

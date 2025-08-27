@@ -6,13 +6,11 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
     const [darkMode, setDarkMode] = useState(false);
 
-    // Загружаем значение из localStorage только на клиенте
     useEffect(() => {
         const saved = localStorage.getItem('darkMode');
         setDarkMode(saved === "true");
     }, []);
 
-    // Сохраняем изменения в localStorage
     useEffect(() => {
         localStorage.setItem("darkMode", darkMode);
     }, [darkMode]);

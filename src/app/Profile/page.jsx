@@ -4,11 +4,12 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { Carousel, Input, Modal } from 'antd';
-import { useDeleteInfoMutation, useDeletImgMutation, useGetUserQuery, useUpdateUserMutation } from '@/services/userApi';
+import { useDeleteInfoMutation, useDeletImgMutation, useGetCategoriesQuery, useGetUserQuery, useUpdateUserMutation } from '@/services/userApi';
 import toast from 'react-hot-toast';
 
 const Profile = () => {
     const { data, refetch } = useGetUserQuery();
+    const { data: categories = [] } = useGetCategoriesQuery();
     const [updateUser] = useUpdateUserMutation();
     let [deletImg] = useDeletImgMutation()
     const { darkMode } = useTheme();
@@ -176,28 +177,56 @@ const Profile = () => {
                 onOk={handleOk}
                 onCancel={handleCancel}
             >
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="mb-3"
-                />
+                <input type="file" accept="image/*" onChange={handleFileChange} className="mb-3" />
 
                 {Image && (
                     <img src={Image} alt="preview" className="w-32 h-32 object-cover rounded-full  my-2" />
                 )}
-                {Object.keys(formData).map((key) => (
-                    <Input
-                        key={key}
-                        name={key}
-                        value={formData[key]}
-                        placeholder={key}
-                        onChange={handleChange}
-                        className="mb-3"
-                    />
-                ))}
-
+                <Input name="name" value={formData.name} placeholder="Имя" onChange={handleChange} className="mb-3" /> <br />
+                <Input name="age" value={formData.age} placeholder="Возраст" onChange={handleChange} className="mb-3" /> <br />
+                <Input name="city" value={formData.city} placeholder="Город" onChange={handleChange} className="mb-3" /> <br />
+                <Input name="number" value={formData.number} placeholder="Телефон" onChange={handleChange} className="mb-3" /> <br />
+                <Input name="university" value={formData.university} placeholder="Университет" onChange={handleChange} className="mb-3" /> <br />
+                <select
+                    value={formData.specialty?.id || ""}
+                    onChange={(e) => {
+                        const selected = categories.find(cat => cat.id === Number(e.target.value));
+                        setFormData({
+                            ...formData,
+                            specialty: selected,
+                            skills: null
+                        });
+                    }}
+                    className="w-full p-1  border rounded"
+                >
+                    <option value="">Выберите категорию</option>
+                    {categories.map(cat => (
+                        <option key={cat.id} value={cat.id}>{cat.name}</option>
+                    ))}
+                </select>
+                <select
+                    value={formData.skills?.id || ""}
+                    onChange={(e) => {
+                        const selectedCat = categories.find(cat => cat.id === formData.specialty?.id);
+                        const selectedSub = selectedCat?.subcategories.find(sub => sub.id === Number(e.target.value));
+                        setFormData({
+                            ...formData,
+                            skills: selectedSub
+                        });
+                    }}
+                    disabled={!formData.specialty}
+                    className="w-full p-1  border rounded"
+                >
+                    <option value="">Выберите навык</option>
+                    {formData.specialty?.subcategories?.map(sub => (
+                        <option key={sub.id} value={sub.id}>{sub.name}</option>
+                    ))}
+                </select>
+                <Input name="graduationYear" value={formData.graduationYear} placeholder="Курс или год окончания" onChange={handleChange} className="mb-3" />
+                <Input name="experience" value={formData.experience} placeholder="Опыт" onChange={handleChange} className="mb-3" />
+                <Input name="goals" value={formData.goals} placeholder="О себе" onChange={handleChange} className="mb-3" />
             </Modal>
+
 
 
             <div className={` p-6 transition-colors duration-500  justify-center items-center min-h-[91vh] 
@@ -234,12 +263,6 @@ const Profile = () => {
                                 <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
                                     {currentUser.name}
                                 </h1>
-                                {/* {currentUser.specialty.map(el=>(
-                                <p className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-                                    {el.name}
-                                </p>
-
-                                    ))} */}
                                 {Array.isArray(currentUser.specialty) ? currentUser.specialty.map(s => (
                                     <p key={s.id} className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
                                         {s.name}
@@ -257,10 +280,6 @@ const Profile = () => {
                                     <p><span className="font-semibold text-blue-500">Университет:</span> {currentUser.university}</p>
                                     <p><span className="font-semibold text-blue-500">Курс:</span> {currentUser.graduationYear}</p>
                                     <p><span className="font-semibold text-blue-500">Опыт:</span> {currentUser.experience}</p>
-                                    {/* {currentUser.skills.map(el=>(
-                                        <p><span className="font-semibold text-blue-500">Навыки:</span>{el.name} </p>
-
-                                    ))} */}
                                     {Array.isArray(currentUser.skills) ? currentUser.skills.map(s => (
                                         <p key={s.id}><span className="font-semibold text-blue-500">Навыки: </span>
                                             {s.name}

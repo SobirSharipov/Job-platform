@@ -7,12 +7,13 @@ export const UserApi = createApi({
         getUser: builder.query({
             query: () => "data"
         }),
+        getCategories: builder.query({
+            query: () => "categories"
+        }),
         addLogin: builder.query({
             query: () => "Users"
         }),
-        getProfile: builder.query({
-            query: () => "Profile"
-        }),
+
         AddUser: builder.mutation({
             query: (newUser) => ({
                 url: "data",
@@ -20,13 +21,7 @@ export const UserApi = createApi({
                 body: newUser
             })
         }),
-        AddProfile: builder.mutation({
-            query: (newUser) => ({
-                url: "Profile",
-                method: "POST",
-                body: newUser
-            })
-        }),
+
         updateUser: builder.mutation({
             query: ({ id, ...updatedData }) => ({
                 url: `data/${id}`,
@@ -55,8 +50,14 @@ export const UserApi = createApi({
                 url: `data/${id}`,
                 method: "DELETE"
             })
+        }),
+        deletImg: builder.mutation({
+            query: (id) => ({
+                url: `img/${id}`,
+                method: "DELETE"
+            })
         })
     })
 })
 
-export const { useUpdateUserMutation, useGetProfileQuery, useAddProfileMutation, useDeleteInfoMutation, useGetUserByIdQuery, useGetUserQuery, useRegistrAddMutation, useLoginUserMutation, useAddLoginQuery, useAddUserMutation } = UserApi
+export const { useGetCategoriesQuery,useDeletImgMutation, useUpdateUserMutation, useDeleteInfoMutation, useGetUserByIdQuery, useGetUserQuery, useRegistrAddMutation, useLoginUserMutation, useAddLoginQuery, useAddUserMutation } = UserApi

@@ -15,8 +15,6 @@ const Profile = () => {
     const { darkMode } = useTheme();
     const router = useRouter();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const token = JSON.parse(localStorage.getItem("Userid"));
-    const currentUser = data?.find(el => el.userId == token);
     const [deleteInfo] = useDeleteInfoMutation();
     const [formData, setFormData] = useState({
         name: '',
@@ -33,7 +31,8 @@ const Profile = () => {
     });
     let [Image, setImage] = useState(null)
     const [Images, setImages] = useState([]);
-
+    const token = JSON.parse(localStorage.getItem("Userid"));
+    const currentUser = data?.find(el => el.userId == token);
 
     useEffect(() => {
         if (data && !currentUser) {
@@ -263,15 +262,10 @@ const Profile = () => {
                                 <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
                                     {currentUser.name}
                                 </h1>
-                                {Array.isArray(currentUser.specialty) ? currentUser.specialty.map(s => (
-                                    <p key={s.id} className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-                                        {s.name}
-                                    </p>
-                                )) : (
+                               
                                     <p className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
                                         {currentUser.specialty?.name || "Без категории"}
                                     </p>
-                                )}
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg leading-relaxed">
                                     <p><span className="font-semibold text-blue-500">Возраст:</span> {currentUser.age}</p>
@@ -280,15 +274,10 @@ const Profile = () => {
                                     <p><span className="font-semibold text-blue-500">Университет:</span> {currentUser.university}</p>
                                     <p><span className="font-semibold text-blue-500">Курс:</span> {currentUser.graduationYear}</p>
                                     <p><span className="font-semibold text-blue-500">Опыт:</span> {currentUser.experience}</p>
-                                    {Array.isArray(currentUser.skills) ? currentUser.skills.map(s => (
-                                        <p key={s.id}><span className="font-semibold text-blue-500">Навыки: </span>
-                                            {s.name}
-                                        </p>
-                                    )) : (
+                                   
                                         <p><span className="font-semibold text-blue-500">Навыки: </span>
                                             {currentUser.skills?.name || ""}
                                         </p>
-                                    )}
                                     <p className="md:col-span-2">
                                         <span className="font-semibold text-blue-500">О себе:</span> {currentUser.goals}
                                     </p>
@@ -304,12 +293,12 @@ const Profile = () => {
                     </div>
 
                 </div>
-                <div className={`${darkMode ? "bg-gray-800/90  shadow-black" : "bg-white/90 hover:bg-gray-50 "} w-[88%] mt-[40px] mx-auto rounded-2xl`}>
-                    <div className='flex justify-around  items-center py-[20px]'>
+                <div className={`${darkMode ? "bg-gray-800/90  shadow-black" : "bg-white/90 hover:bg-gray-50 "} w-[98%]  lg:w-[88%] mt-[40px] mx-auto rounded-2xl`}>
+                    <div className='lg:flex justify-around  items-center lg:px-0 px-[20px] py-[20px]'>
                         <h2 className="text-xl font-bold mb-2  ">
                             Поделиться своим новым достижением 🚀
                         </h2>
-                        <div className="flex items-center gap-2">
+                        <div className="lg:flex items-center gap-2">
                             <input type="file" accept="image/*" multiple onChange={handleImagesChange} />
                             <button
                                 onClick={saveImages}
@@ -322,7 +311,7 @@ const Profile = () => {
                     {currentUser?.img && currentUser.img.length > 0 && (
                         <div className="mt-6 rounded-xl overflow-hidden   dark:border-gray-700 shadow-lg p-4">
 
-                            <div className="grid grid-cols-4 gap-[20px]">
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[20px]">
                                 {currentUser.img.map((photo, idx) => (
                                     <div key={`${photo.id}-${idx}`} className="justify-center items-center mb-4">
                                         <button onClick={() => handleDeleteImg(photo.id)} className='absolute text-black'>

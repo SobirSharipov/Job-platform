@@ -42,15 +42,7 @@ export default function InfoPage() {
           <h1 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
             {user.name}
           </h1>
-          {Array.isArray(user.specialty) ? user.specialty.map(s => (
-            <p key={s.id} className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-              {s.name}
-            </p>
-          )) : (
-            <p className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-              {user.specialty?.name || "Без категории"}
-            </p>
-          )}
+          <p className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>   {user.specialty?.name || " "} </p>
 
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg leading-relaxed">
@@ -60,18 +52,8 @@ export default function InfoPage() {
             <p><span className="font-semibold text-blue-500">Университет:</span> {user.university}</p>
             <p><span className="font-semibold text-blue-500">Курс:</span> {user.graduationYear}</p>
             <p><span className="font-semibold text-blue-500">Опыт:</span> {user.experience}</p>
-            {Array.isArray(user.skills) ? user.skills.map(s => (
-              <p key={s.id}><span className="font-semibold text-blue-500">Навыки: </span>
-                {s.name}
-              </p>
-            )) : (
-                 <p><span className="font-semibold text-blue-500">Навыки: </span>
-                {user.skills?.name || ""}
-              </p>
-            )}
-            <p className="md:col-span-2">
-              <span className="font-semibold text-blue-500">О себе:</span> {user.goals}
-            </p>
+            <p><span className="font-semibold text-blue-500">Навыки: </span>   {user.skills?.name || ""} </p>
+            <p className="md:col-span-2">   <span className="font-semibold text-blue-500">О себе:</span> {user.goals} </p>
           </div>
 
           <a

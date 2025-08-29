@@ -88,26 +88,16 @@ const Home = () => {
                       <h2 className={`text-2xl font-bold mb-1 ${darkMode ? "text-gray-100" : "text-gray-800"}`}>
                         {el.name}
                       </h2>
-                      {Array.isArray(el.specialty) ? el.specialty.map(s => (
-                        <p key={s.id} className={`text-sm mb-2 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
-                          {s.name}
-                        </p>
-                      )) : (
+                      
+
                         <p className={`text-sm mb-2 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
                           {el.specialty?.name || "Без категории"}
                         </p>
-                      )}
 
-
-                      {Array.isArray(el.skills) ? el.skills.map(s => (
-                        <p key={s.id} className="text-blue-500 font-semibold text-lg mb-2">
-                          {s.name}
-                        </p>
-                      )) : (
+                     
                         <p className="text-blue-500 font-semibold text-lg mb-2">
-                          {el.specialty?.name || ""}
+                          {el.skills?.name || ""}
                         </p>
-                      )}
                       <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
                         <span className="font-semibold">City:</span> {el.city}
                       </p>

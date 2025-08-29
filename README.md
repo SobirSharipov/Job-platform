@@ -1,5 +1,6 @@
 #  JobFinder — Next.js Job Platform
 
+![JobFinder Banner](https://via.placeholder.com/1200x300?text=JobFinder+Platform)
 
 
 **JobFinder** is a modern web platform that connects job seekers with companies. It is designed to make finding the right specialists easy and fast.  

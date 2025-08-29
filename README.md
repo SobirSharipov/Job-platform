@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#  JobFinder — Next.js Job Platform
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**JobFinder** is a modern web platform that connects job seekers with companies. It is designed to make finding the right specialists easy and fast.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 💡 Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **User Authentication**  
+  Registration and login with secure data storage.  
 
-## Learn More
+- **Job Seeker Profiles**  
+  Detailed profiles including skills, experience, university, city, and contact information.  
 
-To learn more about Next.js, take a look at the following resources:
+- **Categories & Subcategories**  
+  Browse candidates by categories for precise search.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Responsive Design**  
+  Fully responsive UI for both mobile and desktop.  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Interactive UI**  
+  Smooth transitions, modals, and hover effects.  
 
-## Deploy on Vercel
+- **Contact via Telegram**  
+  Direct contact with candidates through Telegram integration.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technologies
+
+- **Next.js** — modern React framework for SSR and optimized web apps.  
+- **React & Hooks** — component-based UI with state management via hooks.  
+- **RTK Query (Redux Toolkit)** — efficient data fetching and caching.  
+- **Tailwind CSS** — fast and responsive styling.  
+- **React Icons** — modern iconography for UI.  
+- **Axios / Fetch API** — backend API communication.  
+
+---
+
+##  Project Purpose
+
+JobFinder is created to:  
+
+- Allow job seekers to showcase their skills and get discovered by employers.  
+- Enable companies to find the right specialists without relying on generic job boards.  
+- Provide quick and easy contact through Telegram integration.  
+
+---
+
+## ⚙ How It Works
+
+1. Users register and log in to the platform.  
+2. Job seekers fill out their profiles: personal info, skills, experience, and goals.  
+3. The homepage displays work categories (IT, Marketing, Design, etc.).  
+4. Clicking on a category opens subcategories showing users in that category.  
+5. Companies can view a user's profile and contact them directly via Telegram.  
+
+---
+
+##  Future Features
+
+- Filters by experience, skills, and location  
+- Review and rating system for candidates  
+- Subscription to new profiles in interested categories  
+
+
+

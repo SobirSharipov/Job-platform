@@ -23,7 +23,7 @@ export default function InfoPage() {
         }`}
     >
       <div
-        className={`w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-4 rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 backdrop-blur-sm
+        className={`w-full lg:h-[80vh] max-w-6xl mx-auto flex flex-col md:flex-row gap-4 rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 backdrop-blur-sm
           ${darkMode
             ? "bg-gray-800/90  shadow-black"
             : "bg-white/90  shadow-gray-400"
@@ -75,7 +75,7 @@ export default function InfoPage() {
         </div>
       </div>
       <div
-        className={` w-[88%] mt-8 mx-auto  p-[20px] rounded-2xl ${darkMode
+        className={`lg:w-[88%] mt-8 mx-auto  p-[20px] rounded-2xl ${darkMode
           ? "bg-gray-800/90  shadow-black"
           : "bg-white/90  shadow-gray-400"
           }`}
@@ -89,7 +89,7 @@ export default function InfoPage() {
         </p>
 
         {user.img && user.img.length > 0 && (
-          <div className="mt-6 grid grid-cols-4 gap-[20px]">
+          <div className="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-[20px]">
             {user.img.map((photo, idx) => (
               <div key={`${photo.id}-${idx}`} className="flex justify-center items-center">
                 <img

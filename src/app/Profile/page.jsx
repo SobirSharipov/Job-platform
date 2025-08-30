@@ -33,8 +33,16 @@ const Profile = () => {
     const [Images, setImages] = useState([]);
     const token = JSON.parse(localStorage.getItem("Userid"));
     const currentUser = data?.find(el => el.userId == token);
+    const [current, setCurrentUser] = useState(null);
 
     useEffect(() => {
+        const savedUser = localStorage.getItem("currentUser");
+        if (!savedUser) {
+            alert("Пожалуйста, войдите в систему.");
+            router.push("/login");
+        } else {
+            setCurrentUser(JSON.parse(savedUser));
+        }
         if (data && !currentUser) {
             router.push('/JobForm');
         }
@@ -262,10 +270,10 @@ const Profile = () => {
                                 <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-500 to-blue-700 bg-clip-text text-transparent">
                                     {currentUser.name}
                                 </h1>
-                               
-                                    <p className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-                                        {currentUser.specialty?.name || "Без категории"}
-                                    </p>
+
+                                <p className={`text-2xl italic ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
+                                    {currentUser.specialty?.name || "Без категории"}
+                                </p>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg leading-relaxed">
                                     <p><span className="font-semibold text-blue-500">Возраст:</span> {currentUser.age}</p>
@@ -274,10 +282,10 @@ const Profile = () => {
                                     <p><span className="font-semibold text-blue-500">Университет:</span> {currentUser.university}</p>
                                     <p><span className="font-semibold text-blue-500">Курс:</span> {currentUser.graduationYear}</p>
                                     <p><span className="font-semibold text-blue-500">Опыт:</span> {currentUser.experience}</p>
-                                   
-                                        <p><span className="font-semibold text-blue-500">Навыки: </span>
-                                            {currentUser.skills?.name || ""}
-                                        </p>
+
+                                    <p><span className="font-semibold text-blue-500">Навыки: </span>
+                                        {currentUser.skills?.name || ""}
+                                    </p>
                                     <p className="md:col-span-2">
                                         <span className="font-semibold text-blue-500">О себе:</span> {currentUser.goals}
                                     </p>

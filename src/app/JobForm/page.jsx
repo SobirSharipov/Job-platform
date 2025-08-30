@@ -23,7 +23,7 @@ const JobForm = () => {
     e.preventDefault();
     const form = e.target;
 
-    if (!selectedCategory || !selectedSub) {
+    if (!selectedCategory || !selectedSub ||   !form.Name.value || !form.age.value || !form.city.value || !form.number.value  || !form.experience.value || !form.Email.value ) {
       toast.error("Выберите категорию и подкатегорию!");
       return;
     }
@@ -35,9 +35,15 @@ const JobForm = () => {
       city: form.city.value,
       number: form.number.value,
       university: form.university.value,
-      // Массив категорий
-      specialty: [{ id: selectedCategory.id, name: selectedCategory.name }],
-      skills: [{ id: selectedSub.id, name: selectedSub.name }],
+      specialty: {
+        id: selectedCategory.id,
+        name: selectedCategory.name,
+        subcategories: selectedCategory.subcategories || []
+      },
+      skills: {
+        id: selectedSub.id,
+        name: selectedSub.name
+      },
       graduationYear: form.graduationYear.value,
       experience: form.experience.value,
       Email: form.Email.value,
@@ -45,6 +51,7 @@ const JobForm = () => {
       image: previewUrl,
       img: Images
     };
+
 
     try {
       await add(userData).unwrap();
@@ -89,10 +96,10 @@ const JobForm = () => {
   };
 
   return (
-    <div className={`flex justify-around items-start py-[50px] ${darkMode ? "bg-gray-900" : ""}`}>
+    <div className={`lg:flex lg:p x-0 px-[10px] justify-around items-start py-[50px] ${darkMode ? "bg-gray-900" : ""}`}>
       <form
         onSubmit={handleSubmit}
-        className={`w-[50%] p-6 shadow rounded-lg space-y-4 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"}`}
+        className={`lg:w-[50%] p-6 shadow rounded-lg space-y-4 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"}`}
       >
         <h2 className="text-2xl font-bold mb-4">Создание профиля</h2>
 
@@ -150,8 +157,8 @@ const JobForm = () => {
         </button>
       </form>
 
-      <div className='w-[30%]'>
-        <div className={`p-4 w-[100%] h-[75vh] border-2 border-dashed shadow rounded-lg flex justify-center items-center ${darkMode ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"}`}>
+      <div className='lg:w-[30%] lg:mt-0 mt-10'>
+        <div className={`p-4 w-[100%] lg:h-[75vh] h-[40vh] border-2 border-dashed shadow rounded-lg flex justify-center items-center ${darkMode ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"}`}>
           {!previewUrl ? (
             <input type="file" accept="image/*" onChange={handleImageChange} className={darkMode ? "text-white" : ""} />
           ) : (
@@ -168,7 +175,7 @@ const JobForm = () => {
             <input type="file" accept="image/*" onChange={handleImages} multiple className={darkMode ? "text-white" : ""} />
           ) : (
             Images.map((img, idx) => (
-              <img key={`${img.id}-${idx}`} src={img.url} alt={`Preview ${i}`} className="w-[100%] h-[150px] object-cover rounded-lg" />
+              <img key={`${img.id}-${idx}`} src={img.url} alt={`Preview `} className="w-[100%] h-[150px] object-cover rounded-lg" />
             ))
           )}
         </div>

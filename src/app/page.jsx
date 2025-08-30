@@ -10,25 +10,19 @@ import Categories from '@/components/Categories'
 
 const Home = () => {
   const { data = [], refetch } = useGetUserQuery();
-  const [currentUser, setCurrentUser] = useState(null);
   const [Search, setSearch] = useState("");
   const router = useRouter();
   const { darkMode } = useTheme();
+  const [currentUser, setCurrentUser] = useState(null);
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem("currentUser");
-    if (!savedUser) {
-      router.push("/login");
-    } else {
-      setCurrentUser(JSON.parse(savedUser));
-    }
-  }, [router]);
+
 
   useEffect(() => {
     AOS.init({
       duration: 2000,
       once: true,
     });
+    refetch()
   }, []);
 
 
@@ -45,19 +39,31 @@ const Home = () => {
       <Swiper />
       <Categories />
       <div className="py-[100px]">
-        <div className={`flex items-center mx-auto pl-[10px] rounded-lg w-[90%] mb-[30px] border shadow-md
+
+        <div
+          className={`flex items-center mx-auto pl-3 pr-2 rounded-lg w-[95%] sm:w-[80%] md:w-[70%] lg:w-[90%] mb-[30px] border shadow-md transition
       ${darkMode ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200"}`}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
-            className={`size-6 ${darkMode ? "text-gray-300" : "text-gray-600"}`}>
-            <path strokeLinecap="round" strokeLinejoin="round"
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className={`size-6 ${darkMode ? "text-gray-300" : "text-gray-600"}`}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
           </svg>
 
           <input
-            className={`w-full p-[10px] rounded-lg outline-none transition-colors
-          ${darkMode ? "bg-gray-800 text-gray-200 placeholder-gray-400" : "bg-white text-gray-800 placeholder-gray-500"}`}
+            className={`w-full p-3 rounded-lg outline-none transition-colors
+        ${darkMode
+                ? "bg-gray-800 text-gray-200 placeholder-gray-400"
+                : "bg-white text-gray-800 placeholder-gray-500"}`}
             placeholder="Search..."
             type="text"
             value={Search}
@@ -65,17 +71,18 @@ const Home = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px] w-[90%] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-[95%] sm:w-[90%] mx-auto">
           {data
-            .filter(e => e.name.toLowerCase().includes(Search.toLowerCase()))
-            .map(el => (
+            .filter((e) => e.name.toLowerCase().includes(Search.toLowerCase()))
+            .map((el) => (
               <div key={el.id} data-aos="fade-up">
-                <div className={`relative flex flex-col md:flex-row rounded-2xl h-[300px] overflow-hidden shadow-lg transition-all duration-500
+                <div
+                  className={`relative flex flex-col md:flex-row rounded-2xl h-auto md:h-[280px] overflow-hidden shadow-lg transition-all duration-500 transform hover:scale-[1.02]
               ${darkMode
-                    ? "bg-gray-800 hover:bg-gray-700 shadow-gray-900"
-                    : "bg-white hover:bg-gray-50 shadow-gray-300 hover:shadow-xl"}`}
+                      ? "bg-gray-800 hover:bg-gray-700 shadow-gray-900"
+                      : "bg-white hover:bg-gray-50 shadow-gray-300 hover:shadow-xl"}`}
                 >
-                  <div className="w-full md:w-[40%] relative">
+                  <div className="w-full md:w-[40%] h-[200px] md:h-auto relative">
                     <img
                       src={el.image}
                       alt="profile"
@@ -85,24 +92,29 @@ const Home = () => {
 
                   <div className="flex flex-col justify-between px-6 py-4 w-full md:w-[60%]">
                     <div>
-                      <h2 className={`text-2xl font-bold mb-1 ${darkMode ? "text-gray-100" : "text-gray-800"}`}>
+                      <h2
+                        className={`text-xl md:text-2xl font-bold mb-1 ${darkMode ? "text-gray-100" : "text-gray-800"
+                          }`}
+                      >
                         {el.name}
                       </h2>
-                      
 
-                        <p className={`text-sm mb-2 ${darkMode ? "text-gray-400" : "text-gray-500"}`}>
-                          {el.specialty?.name || "Без категории"}
-                        </p>
+                      <p
+                        className={`text-sm mb-2 ${darkMode ? "text-gray-400" : "text-gray-500"
+                          }`}
+                      >
+                        {el.specialty?.name || "Без категории"}
+                      </p>
 
-                     
-                        <p className="text-blue-500 font-semibold text-lg mb-2">
-                          {el.skills?.name || ""}
-                        </p>
+                      <p className="text-blue-500 font-semibold text-lg mb-2">
+                        {el.skills?.name || ""}
+                      </p>
                       <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
                         <span className="font-semibold">City:</span> {el.city}
                       </p>
                       <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
-                        <span className="font-semibold">Experience:</span> {el.experience}
+                        <span className="font-semibold">Experience:</span>{" "}
+                        {el.experience}
                       </p>
                     </div>
 
@@ -118,6 +130,7 @@ const Home = () => {
             ))}
         </div>
       </div>
+
     </div>
 
   )

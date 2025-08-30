@@ -12,7 +12,6 @@ export default function Contact() {
         darkMode ? "bg-gradient-to-br from-gray-900 to-black text-white" : "bg-gradient-to-br from-gray-100 to-white text-gray-900"
       }`}
     >
-      {/* Заголовок */}
       <h2 className="text-4xl font-extrabold mb-4 text-center">
         Свяжитесь со мной
       </h2>
@@ -24,7 +23,6 @@ export default function Contact() {
         Заполните форму или используйте контакты ниже 👇
       </p>
 
-      {/* Форма */}
       <form
         className={`w-full max-w-2xl p-8 rounded-2xl shadow transition-all ${
           darkMode ? "bg-gray-800/70 text-white" : "bg-white text-black"
@@ -57,7 +55,6 @@ export default function Contact() {
         </button>
       </form>
 
-      {/* Контакты */}
       <div
         className={`mt-12 p-6 rounded-xl shadow-lg text-center space-y-2 w-full max-w-lg transition ${
           darkMode ? "bg-gray-800/70" : "bg-white"
@@ -75,8 +72,7 @@ export default function Contact() {
         </p>
       </div>
 
-      {/* Соцсети */}
-      <div className="flex gap-8 mt-10">
+      <div className="lg:flex gap-8 mt-10">
         <a
           href="https://github.com/SobirSharipov"
           target="_blank"

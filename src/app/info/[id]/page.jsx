@@ -4,11 +4,16 @@ import { useGetUserQuery } from "@/services/userApi";
 import { FaTelegramPlane } from "react-icons/fa";
 import { useTheme } from "@/components/ThemeContext";
 import { Carousel } from "antd";
+import { useTranslation } from "react-i18next";
 
 export default function InfoPage() {
   const { id } = useParams();
   const { data = [] } = useGetUserQuery();
   const { darkMode } = useTheme();
+  const { t, i18n } = useTranslation();
+  function TranslateClick(lang) {
+    i18n.changeLanguage(lang);
+  }
 
   const user = data.find(u => String(u.id) === String(id));
 
@@ -46,14 +51,14 @@ export default function InfoPage() {
 
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg leading-relaxed">
-            <p><span className="font-semibold text-blue-500">Возраст:</span> {user.age}</p>
-            <p><span className="font-semibold text-blue-500">Город:</span> {user.city}</p>
-            <p><span className="font-semibold text-blue-500">Телефон:</span> {user.number}</p>
-            <p><span className="font-semibold text-blue-500">Университет:</span> {user.university}</p>
-            <p><span className="font-semibold text-blue-500">Курс:</span> {user.graduationYear}</p>
-            <p><span className="font-semibold text-blue-500">Опыт:</span> {user.experience}</p>
-            <p><span className="font-semibold text-blue-500">Навыки: </span>   {user.skills?.name || ""} </p>
-            <p className="md:col-span-2">   <span className="font-semibold text-blue-500">О себе:</span> {user.goals} </p>
+            <p><span className="font-semibold text-blue-500">{t("Test.59")}:</span> {user.age}</p>
+            <p><span className="font-semibold text-blue-500">{t("Test.60")}:</span> {user.city}</p>
+            <p><span className="font-semibold text-blue-500">{t("Test.61")}:</span> {user.number}</p>
+            <p><span className="font-semibold text-blue-500">{t("Test.62")}:</span> {user.university}</p>
+            <p><span className="font-semibold text-blue-500">{t("Test.63")}:</span> {user.graduationYear}</p>
+            <p><span className="font-semibold text-blue-500">{t("Test.64")}:</span> {user.experience}</p>
+            <p><span className="font-semibold text-blue-500">{t("Test.65")}: </span>   {user.skills?.name || ""} </p>
+            <p className="md:col-span-2">   <span className="font-semibold text-blue-500">{t("Test.66")}:</span> {user.goals} </p>
           </div>
 
           <a
@@ -68,7 +73,7 @@ export default function InfoPage() {
       text-white text-lg font-bold shadow-xl hover:shadow-2xl 
       hover:scale-[1.02] transition-transform duration-300"
             >
-              Связаться <FaTelegramPlane className="text-2xl" />
+              {t("Test.67")} <FaTelegramPlane className="text-2xl" />
             </button>
           </a>
 
@@ -81,11 +86,10 @@ export default function InfoPage() {
           }`}
       >
         <h2 className="text-2xl font-bold mb-4 text-center bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
-          Мои достижения и проекты 🚀
+          {t("Test.68")}
         </h2>
         <p className={`mb-6 text-center ${darkMode ? "text-gray-300" : "text-gray-700"}`}>
-          Здесь я делюсь своими результатами, проектами и важными моментами,
-          которые показывают мой путь и опыт.
+         {t("Test.69")}
         </p>
 
         {user.img && user.img.length > 0 && (

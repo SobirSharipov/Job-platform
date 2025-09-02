@@ -2,7 +2,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ReduxProvider } from "@/components/ReduxProvider";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
+import I18nProvider from "@/app/providers"; // убедись, что путь верный
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +27,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <Header/>
-        {children}
-          <Toaster position="top-center" reverseOrder={false} />
+          <I18nProvider>
+            <Header />
+            {children}
+            <Toaster position="top-center" reverseOrder={false} />
+          </I18nProvider>
         </ReduxProvider>
       </body>
     </html>

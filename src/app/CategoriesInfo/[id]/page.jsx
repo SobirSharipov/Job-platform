@@ -27,7 +27,7 @@ const CategoriesInfo = () => {
         {users.map(user => (
           <div
             key={user.id}
-            className={`flex rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105
+            className={`flex rounded h-70  overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105
               ${darkMode ? "bg-gray-800/90 shadow-black" : "bg-white/90 shadow-gray-300"}`}
           >
             <img

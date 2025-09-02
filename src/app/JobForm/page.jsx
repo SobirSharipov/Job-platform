@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useTheme } from '@/components/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const JobForm = () => {
   const [add] = useAddUserMutation();
@@ -15,6 +16,10 @@ const JobForm = () => {
   const token = JSON.parse(localStorage.getItem("Userid"));
   const { darkMode } = useTheme();
   const router = useRouter();
+  const { t, i18n } = useTranslation();
+  function TranslateClick(lang) {
+    i18n.changeLanguage(lang);
+  }
 
   const selectedCategory = categories?.find(cat => cat.id === selectedCategoryId);
   const selectedSub = selectedCategory?.subcategories.find(sub => sub.id === selectedSubId);
@@ -23,7 +28,7 @@ const JobForm = () => {
     e.preventDefault();
     const form = e.target;
 
-    if (!selectedCategory || !selectedSub ||   !form.Name.value || !form.age.value || !form.city.value || !form.number.value  || !form.experience.value || !form.Email.value ) {
+    if (!selectedCategory || !selectedSub || !form.Name.value || !form.age.value || !form.city.value || !form.number.value || !form.experience.value || !form.Email.value) {
       toast.error("Выберите категорию и подкатегорию!");
       return;
     }
@@ -101,13 +106,13 @@ const JobForm = () => {
         onSubmit={handleSubmit}
         className={`lg:w-[50%] p-6 shadow rounded-lg space-y-4 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"}`}
       >
-        <h2 className="text-2xl font-bold mb-4">Создание профиля</h2>
+        <h2 className="text-2xl font-bold mb-4">{t("Test.45")}</h2>
 
-        <input type="text" name="Name" placeholder="ФИО" className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
-        <input type="number" name="age" placeholder="Возраст" className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
-        <input type="text" name="city" placeholder="Город" className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
-        <input type="number" name="number" placeholder="Телефон" className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
-        <input type="text" name="university" placeholder="Университет" className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
+        <input type="text" name="Name" placeholder={t("Test.46")} className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
+        <input type="number" name="age" placeholder={t("Test.47")} className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
+        <input type="text" name="city" placeholder={t("Test.48")} className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
+        <input type="tel" name="number" placeholder={t("Test.49")} className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
+        <input type="text" name="university" placeholder={t("Test.50")} className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
 
         <div>
           <select
@@ -119,7 +124,7 @@ const JobForm = () => {
             }}
             className={`w-full p-2 border rounded mb-4 ${darkMode ? "bg-gray-700 text-white border-gray-600" : ""}`}
           >
-            <option value="">Выберите категорию</option>
+            <option value="">{t("Test.51")}</option>
             {categories?.map(cat => (
               <option key={cat.id} value={cat.id}>{cat.name}</option>
             ))}
@@ -132,19 +137,19 @@ const JobForm = () => {
             disabled={!selectedCategory}
             className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600" : ""}`}
           >
-            <option value="">Выберите подкатегорию</option>
+            <option value="">{t("Test.52")}</option>
             {selectedCategory?.subcategories.map(sub => (
               <option key={sub.id} value={sub.id}>{sub.name}</option>
             ))}
           </select>
         </div>
 
-        <input type="text" name="graduationYear" placeholder="Курс или Год окончания" className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
-        <input type="text" name="experience" placeholder="Опыт" className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
-        <input type="text" name="Email" placeholder="Телеграм" className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
+        <input type="text" name="graduationYear" placeholder={t("Test.53")} className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
+        <input type="text" name="experience" placeholder={t("Test.54")} className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
+        <input type="text" name="Email" placeholder={t("Test.55")} className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`} />
         <textarea
           name="goals"
-          placeholder="Мои навыки и умения"
+          placeholder={t("Test.56")}
           rows={4}
           className={`w-full p-2 border rounded ${darkMode ? "bg-gray-700 text-white border-gray-600 placeholder-gray-300" : ""}`}
         />
@@ -153,7 +158,7 @@ const JobForm = () => {
           type="submit"
           className={`w-full py-2 rounded ${darkMode ? "bg-blue-700 hover:bg-blue-600 text-white" : "bg-blue-600 text-white hover:bg-blue-700"}`}
         >
-          Сохранить профиль
+         {t("Test.57")}
         </button>
       </form>
 
@@ -167,7 +172,7 @@ const JobForm = () => {
         </div>
 
         <div className={`text-center mt-2 ${darkMode ? "text-white" : ""}`}>
-          <p className='font-bold text-2xl'>Достижение!</p>
+          <p className='font-bold text-2xl'>{t("Test.58")}</p>
         </div>
 
         <div className={`p-4 w-[100%] h-[50vh] mt-[20px] border-2 border-dashed shadow rounded-lg grid grid-cols-2 gap-2 overflow-auto ${darkMode ? "bg-gray-800 border-gray-600" : "bg-white border-gray-300"}`}>

@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useTheme } from '@/components/ThemeContext'
 import Categories from '@/components/Categories'
+import { useTranslation } from 'react-i18next'
 
 const Home = () => {
   const { data = [], refetch } = useGetUserQuery();
@@ -14,7 +15,11 @@ const Home = () => {
   const router = useRouter();
   const { darkMode } = useTheme();
   const [currentUser, setCurrentUser] = useState(null);
-
+  const { t, i18n } = useTranslation();
+  function TranslateClick(lang) {
+    i18n.changeLanguage(lang);
+  }
+ 
 
 
   useEffect(() => {
@@ -64,7 +69,7 @@ const Home = () => {
         ${darkMode
                 ? "bg-gray-800 text-gray-200 placeholder-gray-400"
                 : "bg-white text-gray-800 placeholder-gray-500"}`}
-            placeholder="Search..."
+            placeholder={t("Test.23")}
             type="text"
             value={Search}
             onChange={(e) => setSearch(e.target.value)}
@@ -110,10 +115,9 @@ const Home = () => {
                         {el.skills?.name || ""}
                       </p>
                       <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
-                        <span className="font-semibold">City:</span> {el.city}
+                        {el.city}
                       </p>
                       <p className={darkMode ? "text-gray-300" : "text-gray-700"}>
-                        <span className="font-semibold">Experience:</span>{" "}
                         {el.experience}
                       </p>
                     </div>
@@ -122,7 +126,7 @@ const Home = () => {
                       onClick={() => router.push(`/info/${el.id}`)}
                       className="mt-4 w-full py-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold shadow-md hover:shadow-xl hover:from-blue-600 hover:to-blue-800 transition"
                     >
-                      Подробнее
+                      {t("Test.87")}
                     </button>
                   </div>
                 </div>

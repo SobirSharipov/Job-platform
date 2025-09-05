@@ -23,6 +23,8 @@ const JobForm = () => {
 
   const selectedCategory = categories?.find(cat => cat.id === selectedCategoryId);
   const selectedSub = selectedCategory?.subcategories.find(sub => sub.id === selectedSubId);
+  console.log(selectedCategory);
+  console.log(selectedSub);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -119,7 +121,7 @@ const JobForm = () => {
             name='specialty'
             value={selectedCategoryId || ""}
             onChange={e => {
-              setSelectedCategoryId(Number(e.target.value));
+              setSelectedCategoryId(e.target.value); // без Number()
               setSelectedSubId(null);
             }}
             className={`w-full p-2 border rounded mb-4 ${darkMode ? "bg-gray-700 text-white border-gray-600" : ""}`}
@@ -139,6 +141,7 @@ const JobForm = () => {
           >
             <option value="">{t("Test.52")}</option>
             {selectedCategory?.subcategories.map(sub => (
+
               <option key={sub.id} value={sub.id}>{sub.name}</option>
             ))}
           </select>
@@ -158,7 +161,7 @@ const JobForm = () => {
           type="submit"
           className={`w-full py-2 rounded ${darkMode ? "bg-blue-700 hover:bg-blue-600 text-white" : "bg-blue-600 text-white hover:bg-blue-700"}`}
         >
-         {t("Test.57")}
+          {t("Test.57")}
         </button>
       </form>
 

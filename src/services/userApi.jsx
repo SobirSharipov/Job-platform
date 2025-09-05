@@ -13,7 +13,6 @@ export const UserApi = createApi({
         addLogin: builder.query({
             query: () => "Users"
         }),
-
         AddUser: builder.mutation({
             query: (newUser) => ({
                 url: "data",
@@ -21,7 +20,6 @@ export const UserApi = createApi({
                 body: newUser
             })
         }),
-
         updateUser: builder.mutation({
             query: ({ id, ...updatedData }) => ({
                 url: `data/${id}`,

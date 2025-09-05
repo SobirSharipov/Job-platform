@@ -3,6 +3,7 @@ import { useTheme } from '@/components/ThemeContext'
 import { useGetUserQuery } from '@/services/userApi'
 import { useParams, useRouter } from 'next/navigation'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { FaTelegramPlane } from 'react-icons/fa'
 
 const CategoriesInfo = () => {
@@ -10,10 +11,14 @@ const CategoriesInfo = () => {
   const { data = [] } = useGetUserQuery()
   const { darkMode } = useTheme()
   const router = useRouter()
+    const { t, i18n } = useTranslation();
+    function TranslateClick(lang) {
+      i18n.changeLanguage(lang);
+    }
 
   const users = data.filter(u => String(u.skills.id) === String(id))
 
-  if (!users.length) return <p className="text-center mt-10">{darkMode ? 'Нет пользователей' : 'No users found'}</p>
+
 
   return (
     <div className={`min-h-[91vh] p-6 transition-colors duration-500
@@ -59,6 +64,7 @@ const CategoriesInfo = () => {
         ))}
 
       </div>
+      {users.length === 0 ?<p className="text-center mt-10">{t("Test.88")}</p> : null}
     </div>
   )
 }

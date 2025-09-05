@@ -222,7 +222,7 @@ const Profile = () => {
                     <select
                         value={formData.specialty?.id || ""}
                         onChange={(e) => {
-                            const selected = categories.find(cat => cat.id === Number(e.target.value));
+                            const selected = categories.find(cat => cat.id === (e.target.value));
                             setFormData({ ...formData, specialty: selected, skills: null });
                         }}
                         className="w-full p-1 border rounded"

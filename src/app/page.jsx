@@ -35,7 +35,7 @@ const Home = () => {
 
 
   return (
-    <div className={`py-[30px] transition-colors duration-500 
+    <div className={` transition-colors duration-500 
   ${darkMode
         ? "bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-100"
         : "bg-gradient-to-br from-gray-100 via-white to-gray-50 text-gray-900"

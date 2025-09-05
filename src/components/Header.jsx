@@ -213,7 +213,7 @@ const Header = () => {
                     onClick={() => setMenu(false)}
                 >
                     <div
-                        className={`w-64 h-full p-6 flex flex-col gap-6 shadow-lg transform transition-transform duration-300 ${darkMode
+                        className={`w-64 h-full p-4 flex flex-col gap-6 shadow-lg transform transition-transform duration-300 ${darkMode
                             ? "bg-gray-900 text-gray-100"
                             : "bg-white text-gray-900"
                             }`}

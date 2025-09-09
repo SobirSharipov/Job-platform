@@ -1,15 +1,40 @@
 "use client";
 import { useTheme } from "@/components/ThemeContext";
-import React from "react";
+import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { FaGithub, FaInstagram, FaLinkedin, FaTelegramPlane } from "react-icons/fa";
 
 export default function Contact() {
   const { darkMode } = useTheme();
-    const { t, i18n } = useTranslation();
-    function TranslateClick(lang) {
-      i18n.changeLanguage(lang);
+  const { t, i18n } = useTranslation();
+  function TranslateClick(lang) {
+    i18n.changeLanguage(lang);
+  }
+  let [name, setname] = useState('')
+  let [email, setemail] = useState('')
+  let [message, setmessage] = useState('')
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      return toast.error(t("Test.90"));
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return toast.error(t("Test.91"));
+    }
+
+    toast.success(
+      `✅ ${t("Test.89")}\n\n👤 ${name}\n📧 ${email}\n💬 ${message}`
+    );
+
+    setname("");
+    setemail("");
+    setmessage("");
+  }
+
 
   return (
     <div
@@ -17,7 +42,7 @@ export default function Contact() {
         }`}
     >
       <h2 className="text-4xl font-extrabold mb-4 text-center">
-       {t("Test.38")}
+        {t("Test.38")}
       </h2>
       <p
         className={`mb-10 max-w-xl text-center ${darkMode ? "text-gray-400" : "text-gray-600"
@@ -27,16 +52,19 @@ export default function Contact() {
       </p>
 
       <form
+        onSubmit={handleSubmit}
         className={`w-full max-w-2xl p-8 rounded-2xl shadow transition-all ${darkMode ? "bg-gray-800/70 text-white" : "bg-white text-black"
           }`}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
+            value={name} onChange={(e) => setname(e.target.value)}
             type="text"
             placeholder={t("Test.40")}
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
+            value={email} onChange={(e) => setemail(e.target.value)}
             type="email"
             placeholder={t("Test.41")}
             className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -44,6 +72,7 @@ export default function Contact() {
         </div>
 
         <textarea
+          value={message} onChange={(e) => setmessage(e.target.value)}
           placeholder={t("Test.42")}
           rows={5}
           className="w-full p-3 border rounded-lg mt-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -61,15 +90,18 @@ export default function Contact() {
         className={`mt-12 p-6 rounded-xl shadow-lg text-center space-y-2 w-full max-w-lg transition ${darkMode ? "bg-gray-800/70" : "bg-white"
           }`}
       >
-        <p>
-          📞 {t("Test.44")}{" "}
+        <p className="flex items-center justify-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+          {t("Test.44")}{" "}
           <span className="font-semibold">+992 915 22 16 10</span>
         </p>
         <p>
           ✉️ {t("Test.15")}: <span className="font-semibold">sobir@gmail.com</span>
         </p>
-        <p>
-          💬 Telegram: <span className="font-semibold">@Sobirjon_ll_04</span>
+        <p className="flex items-center justify-center gap-2">
+           <FaTelegramPlane /> Telegram: <span className="font-semibold">@Sobirjon_ll_04</span>
         </p>
       </div>
 

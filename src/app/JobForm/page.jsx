@@ -23,8 +23,7 @@ const JobForm = () => {
 
   const selectedCategory = categories?.find(cat => cat.id === selectedCategoryId);
   const selectedSub = selectedCategory?.subcategories.find(sub => sub.id === selectedSubId);
-  console.log(selectedCategory);
-  console.log(selectedSub);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -121,7 +120,7 @@ const JobForm = () => {
             name='specialty'
             value={selectedCategoryId || ""}
             onChange={e => {
-              setSelectedCategoryId(e.target.value); // без Number()
+              setSelectedCategoryId(e.target.value); 
               setSelectedSubId(null);
             }}
             className={`w-full p-2 border rounded mb-4 ${darkMode ? "bg-gray-700 text-white border-gray-600" : ""}`}

@@ -108,7 +108,7 @@ export default function Contact() {
 
       <div className="lg:flex gap-8 mt-10">
         <a
-          href="https://www.linkedin.com/in/sobirjon-sharipov-6934b4380/" // вставь свой LinkedIn
+          href="https://www.linkedin.com/in/sobirjon-sharipov-6934b4380/" 
           target="_blank"
           rel="noopener noreferrer"
           className={`flex items-center gap-2 transition ${darkMode ? "text-white" : ""}`}

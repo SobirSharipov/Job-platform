@@ -38,7 +38,7 @@ export default function Contact() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center py-16 px-4 transition-all duration-500 ${darkMode ? "bg-gradient-to-br from-gray-900 to-black text-white" : "bg-gradient-to-br from-gray-100 to-white text-gray-900"
+      className={`min-h-screen pt-[100px] flex flex-col items-center py-16 px-4 transition-all duration-500 ${darkMode ? "bg-gradient-to-br from-gray-900 to-black text-white" : "bg-gradient-to-br from-gray-100 to-white text-gray-900"
         }`}
     >
       <h2 className="text-4xl font-extrabold mb-4 text-center">

@@ -272,7 +272,7 @@ const Profile = () => {
 
 
 
-            <div className={` p-6 transition-colors duration-500  justify-center items-center min-h-[91vh] 
+            <div className={`pt-[100px] p-6 transition-colors duration-500  justify-center items-center min-h-[100vh] 
              ${darkMode ? "bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-100" : "bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900"}`}>
                 <div className={`w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-8 rounded-2xl shadow-lg overflow-hidden transition-all duration-500 backdrop-blur-sm
           ${darkMode ? "bg-gray-800/90  shadow-black" : "bg-white/90 hover:bg-gray-50 "}`}>

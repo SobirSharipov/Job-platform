@@ -102,7 +102,7 @@ const JobForm = () => {
   };
 
   return (
-    <div className={`lg:flex lg:p x-0 px-[10px] justify-around items-start py-[50px] ${darkMode ? "bg-gray-900" : ""}`}>
+    <div className={`lg:flex pt-[100px] lg:p x-0 px-[10px] justify-around items-start py-[50px] ${darkMode ? "bg-gray-900" : ""}`}>
       <form
         onSubmit={handleSubmit}
         className={`lg:w-[50%] p-6 shadow rounded-lg space-y-4 ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"}`}

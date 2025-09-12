@@ -11,7 +11,7 @@ const About = () => {
         i18n.changeLanguage(lang);
       }
   return (
-    <div className={` py-[30px] ${ darkMode ? "bg-gradient-to-br from-gray-900 to-black text-white" : "bg-gradient-to-br from-gray-100 to-white text-gray-900"}`}>
+    <div className={` py-[30px] pt-[100px] ${ darkMode ? "bg-gradient-to-br from-gray-900 to-black text-white" : "bg-gradient-to-br from-gray-100 to-white text-gray-900"}`}>
 
    <div className='max-w-5xl mx-auto space-y-10'>
 

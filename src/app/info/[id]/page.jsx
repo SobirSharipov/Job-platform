@@ -57,7 +57,7 @@ export default function InfoPage() {
 
   return (
     <div
-      className={`min-h-[91vh] p-6 transition-colors duration-500 justify-center items-center
+      className={`min-h-[91vh] pt-[100px] p-6 transition-colors duration-500 justify-center items-center
         ${darkMode
           ? "bg-gradient-to-br from-gray-900 via-gray-800 to-black text-gray-100"
           : "bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900"

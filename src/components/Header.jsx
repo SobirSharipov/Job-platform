@@ -27,7 +27,7 @@ const Header = () => {
 
     return (
         <div
-            className={`flex justify-between lg:justify-around items-center py-3 px-6 transition-colors duration-300
+            className={`flex fixed w-full  z-50 justify-between  items-center py-3 px-6 transition-colors duration-300
             ${darkMode ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"}`}
         >
 

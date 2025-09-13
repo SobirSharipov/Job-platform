@@ -28,7 +28,6 @@ const Bookmark = () => {
     }
 
 
-
     return (
         <div
             className={`p-6 pt-[100px] min-w-[95%] min-h-[91vh] mx-auto ${darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"

@@ -263,7 +263,7 @@ const Header = () => {
                                             d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                                         />
                                     </svg>
-                                </button>
+                                </button> 
                                 {currentUser && <span className="ml-2 font-semibold">{currentUser.name}</span>}
                             </Link>
                             <div className="relative">
@@ -295,28 +295,10 @@ const Header = () => {
                                     </div>
                                 )}
                             </div>
-                            <button
-                                className="self-end mb-4"
-                                onClick={() => setMenu(false)}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="size-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            </button>
+                          
 
                         </div>
-
+                                <hr />
                         <Link href="/" onClick={() => setMenu(false)}>
                             <p className="font-bold hover:text-blue-500"> {t("Test.1")}</p>
                         </Link>
@@ -325,6 +307,9 @@ const Header = () => {
                         </Link>
                         <Link href="/Contact" onClick={() => setMenu(false)}>
                             <p className="font-bold hover:text-blue-500"> {t("Test.3")}</p>
+                        </Link>
+                        <Link href="/Bookmark" onClick={() => setMenu(false)}>
+                            <p className="font-bold hover:text-blue-500"> {t("Test.92")}</p>
                         </Link>
                         <Link href="/login" onClick={() => setMenu(false)}>
                             <p className="font-bold hover:text-blue-500"> {t("Test.4")}</p>

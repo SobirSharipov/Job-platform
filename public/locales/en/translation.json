@@ -90,6 +90,11 @@
         "88": "No users found",
         "89": "Your message has been sent!",
         "90": "Please fill in all fields!",
-        "91": "⚠️ Enter a valid email!"
+        "91": "⚠️ Enter a valid email!",
+        "92": "Favorites",
+        "93": "Specialization",
+        "94": "Graduation Year",
+        "95": "Goals",
+        "96": "No saved users"
     }
 }

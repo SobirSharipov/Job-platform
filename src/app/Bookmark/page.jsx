@@ -1,6 +1,7 @@
 "use client";
 import { useTheme } from "@/components/ThemeContext";
 import { useGetUserQuery } from "@/services/userApi";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
@@ -10,10 +11,11 @@ const Bookmark = () => {
     const [bookmarks, setBookmarks] = useState([]);
     const { darkMode } = useTheme();
     const { data = [], refetch } = useGetUserQuery();
-     const { t, i18n } = useTranslation();
-        function TranslateClick(lang) {
-            i18n.changeLanguage(lang);
-        }
+      const router = useRouter();
+    const { t, i18n } = useTranslation();
+    function TranslateClick(lang) {
+        i18n.changeLanguage(lang);
+    }
 
     useEffect(() => {
         const savedLikes = JSON.parse(localStorage.getItem("Like")) || [];
@@ -33,7 +35,7 @@ const Bookmark = () => {
             className={`p-6 pt-[100px] min-w-[95%] min-h-[91vh] mx-auto ${darkMode ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"
                 }`}
         >
-            <h2 className="text-2xl font-bold mb-6 text-center">{bookmarks.length > 0 ?`${t("Test.92")}`:""}</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">{bookmarks.length > 0 ? `${t("Test.92")}` : ""}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
                 {bookmarks.length > 0 ? (
@@ -60,19 +62,25 @@ const Bookmark = () => {
                                 <p className="text-sm mb-1"><span className="font-semibold text-blue-600">{t("Test.79")}:</span> {user.university || "-"}</p>
                                 <p className="text-sm mb-1"><span className="font-semibold text-blue-600">{t("Test.94")}:</span> {user.graduationYear || "-"}</p>
                                 <p className="text-sm mb-1"><span className="font-semibold text-blue-600">{t("Test.85")}:</span> {user.experience || "-"}</p>
-                                <p className="text-sm"><span className="font-semibold text-blue-600">{t("Test.95")}:</span> {user.goals || "-"}</p>
                             </div>
-
-                            <a href={`https://t.me/${user.Email}`} target="_blank" rel="noopener noreferrer">
-                                <button className="w-full flex justify-center items-center gap-2 py-2 mt-auto rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white font-bold shadow-lg hover:shadow-2xl transition">
-                                    {t("Test.67")} <FaTelegramPlane />
+                            <div className="grid grid-cols-2 gap-2">
+                                <a href={`https://t.me/${user.Email}`} target="_blank" rel="noopener noreferrer">
+                                    <button className="w-full flex justify-center items-center gap-2 py-2 mt-auto rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white font-bold shadow-lg hover:shadow-2xl transition">
+                                        {t("Test.67")} <FaTelegramPlane />
+                                    </button>
+                                </a>
+                                <button
+                                    onClick={() => router.push(`/info/${user.id}`)}
+                                    className="w-full flex justify-center items-center gap-2 py-2 mt-auto rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white font-bold shadow-lg hover:shadow-2xl transition"
+                                >
+                                    {t("Test.87")}
                                 </button>
-                            </a>
+                            </div>
                         </div>
                     ))
                 ) : (
                     <div className={`p-6 text-center ${darkMode ? "text-gray-300" : "text-gray-500"}`}>
-                       {t("Test.96")}
+                        {t("Test.96")}
                     </div>
                 )}
 
